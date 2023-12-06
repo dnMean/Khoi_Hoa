@@ -1,0 +1,28 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-entity_cccd",
+      "2": "I-entity_cccd",
+      "3": "L-entity_cccd",
+      "4": "U-entity_cccd",
+      "5": "B-number_of_judicial",
+      "6": "I-number_of_judicial",
+      "7": "L-number_of_judicial",
+      "8": "U-number_of_judicial",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-entity_cccd": 1,
+      "I-entity_cccd": 2,
+      "L-entity_cccd": 3,
+      "U-entity_cccd": 4,
+      "B-number_of_judicial": 5,
+      "I-number_of_judicial": 6,
+      "L-number_of_judicial": 7,
+      "U-number_of_judicial": 8,
+      "O": 0
+    },
+    "num_tags": 9
+  }
+]

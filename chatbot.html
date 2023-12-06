@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rasa Chatbot</title>
+    <style>
+        /* Chat container styling */
+        .chat-container {
+            max-width: 1000px; /* Adjust the width as needed */
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Chat history styling */
+        .chat-history {
+            max-height: 800px; /* Adjust the height as needed */
+            overflow-y: auto;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        /* User input styling */
+        .user-input {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        /* Input field styling */
+        .input-field {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Send button styling */
+        #send-button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #send-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Bot message styling */
+        .bot-message {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        /* User message styling */
+        .user-message {
+            background-color: #f0f0f0;
+            color: #333;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        /* Button styling */
+        .button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-history" id="chat-history">
+            <!-- Chat messages will be displayed here -->
+        </div>
+        <div class="user-input">
+            <input type="text" id="user-message" class="input-field" placeholder="Type your message..." />
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <script>
+       // click send button when press ENTER during input
+        var input = document.getElementById("user-message");
+        // Execute a function when the user presses a key on the keyboard
+        input.addEventListener("keypress", function(event) {
+            // If the user presses the "Enter" key on the keyboard
+            if (event.key === "Enter") {
+                // Cancel the default action, if needed
+                event.preventDefault();
+                // Trigger the button element with a click
+                document.getElementById("send-button").click();
+            }
+        });
+
+        // Function to add a message to the chat history
+        // function addMessage(sender, message) {
+        //     const chatHistory = document.getElementById("chat-history");
+        //     const messageDiv = document.createElement("div");
+        //     messageDiv.classList.add(sender === "You" ? "user-message" : "bot-message");
+        //     messageDiv.textContent = `${sender}: ${message}`;
+        //     chatHistory.appendChild(messageDiv);
+        // }
+        function addMessage(sender, message) {
+            const chatHistory = document.getElementById("chat-history");
+            const messageDiv = document.createElement("div");
+            messageDiv.classList.add(sender === "You" ? "user-message" : "bot-message");
+
+            // Replace \n with <br> for line breaks
+            const messageWithLineBreaks = message.replace(/\n/g, "<br>");
+
+            messageDiv.innerHTML = `${sender}: ${messageWithLineBreaks}`;
+            chatHistory.appendChild(messageDiv);
+}    
+        function displayButtons(buttons) {
+    const chatHistory = document.getElementById("chat-history");
+    buttons.forEach(button => {
+        const buttonElement = document.createElement("button");
+        buttonElement.textContent = button.title;
+        buttonElement.addEventListener("click", function() {
+            sendPayload(button.payload);
+        });
+        const lineBreak = document.createElement("br"); // Add a line break after each button
+        chatHistory.appendChild(buttonElement);
+        chatHistory.appendChild(lineBreak);
+    });
+}
+        // Function to send a user message to the Rasa chatbot
+        function sendUserMessage(message) {
+            addMessage("You", message);
+                // Send the user message to your Rasa chatbot running on localhost:5005
+            fetch("http://localhost:5005/webhooks/rest/webhook", {
+                method: "POST",
+                body: JSON.stringify({ message: message }),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.length > 0) {
+                    for (let i=0;i<data.length;i++){
+                        const botResponse = data[i].text;
+                        addMessage("Rasa Bot", botResponse);
+                        console.log(botResponse)
+                        if (data[i].buttons) {
+                        displayButtons(data[i].buttons);
+                        }
+                    }
+                    // If there are buttons in the bot's response, display them
+
+                }
+            })
+            .catch(error => {
+                console.error("Error sending message to Rasa:", error);
+            });
+        }
+
+        // Function to send a payload to the Rasa chatbot
+        function sendPayload(payload) {
+            sendUserMessage(payload);
+        }
+
+        // Event listener for the send button
+        document.getElementById("send-button").addEventListener("click", function() {
+            const userMessage = document.getElementById("user-message").value;
+            sendUserMessage(userMessage);
+
+            // Clear the input field
+            document.getElementById("user-message").value = "";
+        });
+        
+    </script>
+</body>
+</html>

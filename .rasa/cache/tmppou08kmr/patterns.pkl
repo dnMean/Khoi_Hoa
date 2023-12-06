@@ -1,0 +1,6 @@
+[
+  {
+    "name": "regex_number_judicial",
+    "pattern": "\\d{1}"
+  }
+]

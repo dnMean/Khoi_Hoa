@@ -1,0 +1,85 @@
+version: "3.1"
+
+intents:
+  - greet
+  - cccd
+  - danhmuc
+  - choose_license
+  - affirm
+  - deny
+  - select_document
+  - choose_judicial
+  - number_judicial
+  - representative
+  - payment
+  - parents
+
+entities:
+  - entity_cccd
+  - number_of_judicial
+  - topic
+  - juridical
+slots: 
+  entity_cccd:
+    type: any 
+    mappings:
+    - type: from_entity
+      entity: entity_cccd
+  number_of_judicial:
+    type: any 
+    mappings:
+    - type: from_entity
+      entity: number_of_judicial
+  topic:
+    type: any
+    mappings:
+    - type: from_entity
+      entity: topic
+  juridical:
+    type: any
+    mappings:
+    - type: from_entity
+      entity: juridical    
+  # topic:
+  #   type: text
+  #   influence_conversation: true
+  #   mappings:
+  #     - type: custom
+  # license:
+  #   type: text
+  #   influence_conversation: true
+  #   mappings:
+  #     - type: custom
+
+responses:
+  utter_greet:
+  - text: "XIN CHÀO CÔNG DÂN ĐẾN TRUNG TÂM HÀNH CHÍNH CÔNG THỪA THIÊN HUẾ, VUI LÒNG NHẬP SỐ CĂN CƯỚC CÔNG DÂN CỦA BẠN"
+
+  utter_cccd:
+  - text: "XIN CHÀO CÔNG DÂN:{entity_cccd}., HIỆN TRUNG TÂM HÀNH CHÍNH CÔNG TT HUẾ CÓ 
+          CÁC DỊCH VỤ TỰ ĐỘNG 24/7 NHƯ SAU, BẠN VUI LÒNG CHỌN DANH MỤC MUỐN XỬ LÝ"
+    buttons:
+    - title: "Danh mục 1: -THỦ TỤC CẤP/ĐỔI LẠI GIẤY PHÉP LẠI XE"
+      payload: "Danh mục 1"
+    - title: "Danh mục 2: - THỦ TỤC CẤP PHIẾU LÝ LỊCH TƯ PHÁP CHO CÔNG DÂN VIỆT NAM, NGƯỜI NƯỚC NGOÀI ĐANG CƯ TRÚ TẠI VIỆT NAM"
+      payload: "Danh mục 2"
+    - title: "Danh mục 3: -THỦ TỤC KHÁC"
+      payload: "Danh mục 3"
+  utter_test: 
+  - text: "ĐƠN XIN ĐỔI GIẤY PHÉP LÁI XE-THEO MẪU- BẠN CẦN IN MẪU ĐƠN=>BẤM CHỌN, MÁY IN RA"
+actions:
+  - action_handle_step_2
+  - action_handle_license
+  - action_choose_change_license
+  - action_choose_judicial
+  - action_choose_number_of_judicial
+  - action_handle_affirm_deny
+  - action_choose_representative
+  - action_payout_date
+  - action_choose_payment
+  - action_handle_payment
+  - action_handle_parents
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+ 

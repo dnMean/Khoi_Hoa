@@ -1,0 +1,10 @@
+[
+  {
+    "name": "regex_number_cccd",
+    "pattern": "\\d{10,12}"
+  },
+  {
+    "name": "regex_number_judicial",
+    "pattern": "\\d{1}"
+  }
+]

@@ -1,0 +1,146 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - xin chào
+    - hey
+    - có ai ở đó không 
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+- regex: cccd 
+  examples: |
+    - \d{12}
+
+- intent: cccd
+  examples: |
+    - [036201004123](entity_cccd)
+    - [037201004421](entity_cccd)
+    - [038201004112](entity_cccd)
+    - [039201004791](entity_cccd)
+    - [012201004721](entity_cccd)
+    - [042201004191](entity_cccd)
+- intent: danhmuc
+  examples: |
+    - Danh mục 1
+    - Danh mục 2
+    - Danh mục 3
+    - Giấy tờ 1
+    - Giấy tờ 2 
+    - Giấy tờ 3
+    - Giấy tờ 4
+    - Danh mục 1
+    - Danh mục 2
+    - Danh mục 3
+    - Giấy tờ 1
+    - Giấy tờ 2 
+    - Giấy tờ 3
+    - Giấy tờ 4
+- intent: choose_license
+  examples: |
+    - A1,A2,A3
+    - A1,A2,A3
+    - A1,A2,A3
+    - A1,A2,A3
+    - A1,A2,A3
+    - A1,A2,A3
+    - A1,A2,A3
+    - A1,A2,A3
+    - B1,B2,C,D,E
+    - B1,B2,C,D,E
+    - B1,B2,C,D,E
+    - B1,B2,C,D,E
+    - B1,B2,C,D,E
+    - B1,B2,C,D,E
+    - B1,B2,C,D,E
+    - B1,B2,C,D,E
+
+- intent: affirm
+  examples: |
+    - có
+    - tôi có rồi
+    - tôi đã có 
+- intent: deny
+  examples: |
+    - chưa có
+    - không
+    - không có
+
+- intent: select_document
+  examples: |
+    - ĐỔI GIẤY PHÉP LÁI XE DO NGÀNH GIAO THÔNG VẬN TẢI CẤP
+    - ĐỔI GIẤY PHÉP LÁI XE DO NGÀNH GIAO THÔNG VẬN TẢI CẤP
+    - ĐỔI GIẤY PHÉP LÁI XE DO NGÀNH GIAO THÔNG VẬN TẢI CẤP
+    - ĐỔI GIẤY PHÉP LÁI XE DO NGÀNH GIAO THÔNG VẬN TẢI CẤP
+    - MẤT GIẤY PHÉP LÁI XE
+    - MẤT GIẤY PHÉP LÁI XE
+    - MẤT GIẤY PHÉP LÁI XE
+    - MẤT GIẤY PHÉP LÁI XE
+
+- intent: choose_judicial
+  examples: |
+    - PHIẾU LÝ LỊCH TƯ PHÁP SỐ 1
+    - PHIẾU LÝ LỊCH TƯ PHÁP SỐ 1
+    - PHIẾU LÝ LỊCH TƯ PHÁP SỐ 1
+    - PHIẾU LÝ LỊCH TƯ PHÁP SỐ 1
+    - PHIẾU LÝ LỊCH TƯ PHÁP SỐ 2
+    - PHIẾU LÝ LỊCH TƯ PHÁP SỐ 2
+    - PHIẾU LÝ LỊCH TƯ PHÁP SỐ 2
+    - PHIẾU LÝ LỊCH TƯ PHÁP SỐ 2
+- regex: number_judicial
+  examples: |
+    - \d{1}
+
+- intent: number_judicial
+  examples: |
+    - [0](number_of_judicial)
+    - [1](number_of_judicial)
+    - [2](number_of_judicial)
+    - [3](number_of_judicial)
+    - [4](number_of_judicial)
+    - [5](number_of_judicial)
+    - [6](number_of_judicial)
+    - [7](number_of_judicial)
+    - [8](number_of_judicial)
+
+- intent: representative 
+  examples: |
+    - cá nhân
+    - cá nhân
+    - cá nhân
+    - cá nhân
+    - ủy quyền 
+    - ủy quyền
+    - ủy quyền 
+ 
+- intent: payment
+  examples: |
+    - TRỰC TIẾP
+    - BƯU ĐIỆN
+    - TRỰC TIẾP
+    - BƯU ĐIỆN    
+    - TRỰC TIẾP
+    - BƯU ĐIỆN
+    - TRỰC TIẾP
+    - BƯU ĐIỆN
+
+- intent: parents 
+  examples: |
+    - CHA
+    - MẸ
+    - CHA
+    - MẸ
+    - CHA
+    - MẸ
+    - CHA
+    - MẸ

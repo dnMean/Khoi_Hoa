@@ -1,0 +1,10 @@
+[
+  {
+    "name": "cccd",
+    "pattern": "\\d{12}"
+  },
+  {
+    "name": "number_judicial",
+    "pattern": "\\d{1}"
+  }
+]

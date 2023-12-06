@@ -1,0 +1,129 @@
+version: "3.1"
+
+stories:
+
+# - story: chọn mục 1 chọn BDEFF có giấy khám sức khỏe 
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: cccd
+#   - action: utter_cccd
+#   - intent: danhmuc
+#   - action: action_handle_step_2    
+#   - intent: choose_license
+#   - action: action_handle_license
+#   - intent: affirm 
+#   - action: action_choose_health_certification
+#   # - intent: select_document
+#   # - action: action_choose_change_license
+
+# - story: chọn mục 1 chọn BDEFF không có giấy khám sức khỏe 
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: cccd
+#   - action: utter_cccd
+#   - intent: danhmuc
+#   - action: action_handle_step_2    
+#   - intent: choose_license
+#   - action: action_handle_license
+#   - intent: deny 
+#   - action: action_choose_health_certification
+
+
+# - story: chọn danh mục 2
+#   steps :
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: cccd
+#   - action: utter_cccd
+#   - intent: danhmuc
+#   - action: action_handle_step_2
+#   - intent: choose_judicial
+#   - action: action_choose_judicial    
+  
+# - story: chọn danh mục 3 
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: cccd
+#   - action: utter_cccd
+#   - intent: danhmuc
+#   - action: action_handle_step_2                                            
+
+- story: Xin chào
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- story: nhập căn cước 
+  steps:
+  - intent: cccd
+  - action: utter_cccd
+
+- story: chọn danh mục
+  steps:
+  - intent: danhmuc
+  - action: action_handle_step_2
+
+- story: chọn danh mục 1 và chọn B1,B2,C,D,E , có giấy khám sức khỏe
+  steps:
+  - intent: choose_license
+  - action: action_handle_license
+  - intent: affirm
+  - action: action_handle_affirm_deny
+
+- story: chọn danh mục đổi giấy phép hoặc mất giấy phép
+  steps:
+  - intent: select_document
+  - action: action_choose_change_license
+
+- story: chọn danh mục 1 và chọn B1,B2,C,D,E, không có giấy khám sức khỏe
+  steps:
+  - intent: choose_license
+  - action: action_handle_license
+  - intent: deny
+  - action: action_handle_affirm_deny
+
+#------------------- dang mục 2
+- story: chọn pháp lý có miễm giảm
+  steps :
+  - intent: choose_judicial
+  - action: action_choose_judicial   
+  - intent: number_judicial
+  - action: action_choose_number_of_judicial
+  - intent: affirm
+  - action: action_handle_affirm_deny
+
+- story: chọn pháp lý, không có miễm giảm
+  steps :
+  - intent: choose_judicial
+  - action: action_choose_judicial   
+  - intent: number_judicial
+  - action: action_choose_number_of_judicial
+  - intent: deny
+  - action: action_handle_affirm_deny
+  - intent: representative
+  - action: action_choose_representative
+  - intent: payment
+  - action: action_handle_payment
+
+- story: chọn pháp lý 2, Cá nhân
+  steps :
+  - intent: choose_judicial
+  - action: action_choose_judicial   
+  - intent: representative
+  - action: action_choose_representative
+
+- story: chọn pháp lý 2, Ủy Quyền
+  steps :
+  - intent: choose_judicial
+  - action: action_choose_judicial   
+  - intent: representative
+  - action: action_choose_representative
+  - intent: parents
+  - action: action_handle_parents
+# - story: chọn số phiếu 
+#   steps:
+#   - intent: number_judicial
+#   - action: action_choose_number_of_judicial
